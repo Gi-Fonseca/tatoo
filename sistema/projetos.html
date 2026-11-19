@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Estúdio de Tatuagem | Projetos</title>
+  <link rel="stylesheet" href="css/estilo.css">
+  <script src="js/app.js"></script>
+</head>
+<body>
+  <div class="estrutura-aplicacao">
+    <script>document.write(montarMenu('Projetos de tatuagem', 'projetos'));</script>
+
+    <section class="painel">
+      <div class="cabecalho-painel">
+        <h2>Projetos cadastrados</h2>
+        <button class="botao botao-principal" id="novoProjeto">Novo projeto</button>
+      </div>
+
+      <form id="formularioProjeto" class="grade-formulario oculto">
+        <input type="hidden" id="idProjeto">
+        <label>Nome do projeto <input id="nomeProjeto" required></label>
+        <label>Cliente <select id="clienteProjeto" required></select></label>
+        <label>Estilo <input id="estiloProjeto" placeholder="Linha fina, tatuagem preta..." required></label>
+        <label>Status
+          <select id="statusProjeto">
+            <option>Em planejamento</option>
+            <option>Aprovado</option>
+            <option>Concluído</option>
+          </select>
+        </label>
+        <label class="inteiro">Descrição <textarea id="descricaoProjeto" required></textarea></label>
+        <button class="botao botao-principal" type="submit">Salvar projeto</button>
+        <button class="botao botao-discreto" type="button" id="cancelarProjeto">Cancelar</button>
+      </form>
+
+      <div class="tabela-container">
+        <table>
+          <thead>
+            <tr><th>Projeto</th><th>Cliente</th><th>Estilo</th><th>Status</th><th>Ações</th></tr>
+          </thead>
+          <tbody id="linhasProjetos"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+  </div>
+  <script src="js/projetos.js"></script>
+</body>
+</html>

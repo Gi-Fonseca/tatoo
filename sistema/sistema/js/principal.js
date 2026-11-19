@@ -1,0 +1,8 @@
+document.addEventListener('DOMContentLoaded', async () => {
+  setupShell('home');
+  const db = await getDb();
+  const upcoming = [...db.sessions].sort((a,b) => new Date(a.date) - new Date(b.date)).slice(0, 3);
+  const clientName = id => db.clients.find(c => c.id === id)?.name || 'Cliente';
+  const projectName = id => db.projects.find(p => p.id === id)?.name || 'Projeto';
+  document.getElementById('dashboard').innerHTML = `<div class="cards"><div class="stat-card"><p>CLIENTES ATIVOS</p><strong>${db.clients.length}</strong></div><div class="stat-card"><p>PROJETOS</p><strong>${db.projects.length}</strong></div><div class="stat-card"><p>SESSÕES AGENDADAS</p><strong>${db.sessions.filter(s => s.status !== 'Concluída').length}</strong></div></div><div class="grid-2"><section class="panel"><h2>Próximas sessões</h2><div class="list">${upcoming.map(s => `<div class="list-item"><div><strong>${esc(projectName(s.projectId))}</strong><small>${esc(clientName(s.clientId))}</small></div><div><strong>${fmtDate(s.date)}</strong><small>${s.duration} min</small></div></div>`).join('') || '<p class="empty">Nenhuma sessão cadastrada.</p>'}</div></section><section class="panel"><h2>Atalhos rápidos</h2><div class="list"><a class="list-item" href="clientes.html"><div><strong>Gerenciar clientes</strong><small>Buscar, cadastrar e editar dados</small></div><span>→</span></a><a class="list-item" href="projetos.html"><div><strong>Adicionar projeto</strong><small>Associe uma ideia a um cliente</small></div><span>→</span></a><a class="list-item" href="sessoes.html"><div><strong>Organizar agenda</strong><small>Atualize datas e acompanhe sessões</small></div><span>→</span></a></div></section></div>`;
+});

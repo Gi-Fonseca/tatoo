@@ -1,0 +1,90 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #f2f2f2;
+  color: #222;
+  margin: 0;
+  padding: 20px;
+}
+
+.pagina-login {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cartao-login,
+.painel,
+.cartao-indicador {
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+.cartao-login { width: 360px; }
+.marca { background: #fff; color: #222; border: 1px solid #999; padding: 8px; display: inline-block; }
+.marca.pequena { padding: 5px; }
+.subtitulo, .texto-fraco, .dica { color: #777; font-size: 12px; }
+
+form,
+.formulario-vertical { display: flex; flex-direction: column; gap: 10px; }
+label { display: flex; flex-direction: column; gap: 5px; font-size: 13px; }
+input, select, textarea, button { font: inherit; padding: 8px; border: 1px solid #aaa; border-radius: 3px; }
+button { background: #2c6ecb; color: #fff; border: 0; cursor: pointer; }
+.botao-discreto, .botao-suave { background: #777; }
+.botao-perigo { background: #a33; }
+.erro-formulario { color: #a33; }
+
+.estrutura-aplicacao { display: flex; min-height: calc(100vh - 40px); }
+.menu-lateral {
+  width: 180px;
+  background: #fff;
+  color: #222;
+  border: 1px solid #ccc;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+}
+.identidade { display: flex; align-items: center; gap: 8px; margin-bottom: 25px; font-weight: bold; }
+.rotulo-menu { color: #777; font-size: 11px; }
+.menu-lateral nav { display: flex; flex-direction: column; gap: 3px; }
+.menu-lateral nav a { color: #222; padding: 8px; }
+.menu-lateral nav a.ativa, .menu-lateral nav a:hover { background: #e5e5e5; }
+.rodape-menu { margin-top: auto; border-top: 1px solid #ccc; padding-top: 10px; font-size: 12px; }
+.rodape-menu small { display: block; color: #777; }
+
+.conteudo-principal { flex: 1; padding: 25px; max-width: 1100px; }
+.barra-superior { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px; }
+.barra-superior h1 { margin: 0; font-size: 25px; }
+.cartoes { display: flex; gap: 10px; margin-bottom: 15px; }
+.cartao-indicador { flex: 1; }
+.cartao-indicador p { color: #777; font-size: 12px; }
+.cartao-indicador strong { font-size: 23px; }
+.grade-dupla { display: grid; grid-template-columns: 300px 1fr; gap: 15px; }
+.grade-formulario { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.grade-formulario .inteiro { grid-column: 1 / -1; }
+.painel h2 { font-size: 17px; margin-top: 0; }
+.cabecalho-painel { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+.barra-ferramentas, .acoes { display: flex; gap: 5px; }
+.tabela-container { overflow: auto; }
+table { width: 100%; border-collapse: collapse; }
+th, td { border-bottom: 1px solid #ddd; padding: 8px; text-align: left; font-size: 13px; }
+th { color: #666; font-size: 11px; }
+.etiqueta { background: #eee; padding: 4px 6px; font-size: 11px; }
+.aviso { background: #e5f1e5; padding: 10px; margin-bottom: 10px; }
+.oculto { display: none; }
+.item-lista { display: flex; justify-content: space-between; padding: 9px 0; border-bottom: 1px solid #ddd; }
+.vazio { text-align: center; color: #777; padding: 20px; }
+
+@media (max-width: 700px) {
+  .estrutura-aplicacao { display: block; }
+  .menu-lateral { width: auto; }
+  .menu-lateral nav { flex-direction: row; overflow: auto; }
+  .grade-dupla { display: block; }
+  .painel { margin-bottom: 15px; }
+  .cartoes { display: block; }
+  .cartao-indicador { margin-bottom: 10px; }
+  .grade-formulario { display: block; }
+  .grade-formulario label, .grade-formulario button { margin-bottom: 10px; }
+}

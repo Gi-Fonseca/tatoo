@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Estúdio de Tatuagem | Sessões</title>
+  <link rel="stylesheet" href="css/estilo.css">
+  <script src="js/app.js"></script>
+</head>
+<body>
+  <div class="estrutura-aplicacao">
+    <script>document.write(montarMenu('Sessões e agendamentos', 'sessoes'));</script>
+
+    <section class="painel">
+      <div class="cabecalho-painel">
+        <h2>Agenda do estúdio</h2>
+        <button class="botao botao-principal" id="novaSessao">Nova sessão</button>
+      </div>
+
+      <form id="formularioSessao" class="grade-formulario oculto">
+        <input type="hidden" id="idSessao">
+
+        <label>
+          Projeto
+          <select id="projetoSessao" required></select>
+        </label>
+
+        <label>
+          Tatuador
+          <select id="tatuadorSessao" required></select>
+        </label>
+
+        <label>
+          Data e hora
+          <input id="dataSessao" type="datetime-local" required>
+        </label>
+
+        <label>
+          Duração (minutos)
+          <input id="duracaoSessao" type="number" min="30" step="30" value="120" required>
+        </label>
+
+        <label>
+          Situação
+          <select id="statusSessao">
+            <option>Agendada</option>
+            <option>A confirmar</option>
+            <option>Concluída</option>
+          </select>
+        </label>
+
+        <button class="botao botao-principal" type="submit">Salvar sessão</button>
+        <button class="botao botao-discreto" type="button" id="cancelarSessao">Cancelar</button>
+      </form>
+
+      <div class="tabela-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Data</th>
+              <th>Cliente</th>
+              <th>Projeto</th>
+              <th>Tatuador</th>
+              <th>Duração</th>
+              <th>Situação</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody id="linhasSessoes"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+  </div>
+
+  <script src="js/sessoes.js"></script>
+</body>
+</html>
