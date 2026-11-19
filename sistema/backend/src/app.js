@@ -69,11 +69,12 @@ aplicacao.post('/api/entrar', async (requisicao, resposta) => {
   }
 });
 
+// ==================== ENTIDADE: CLIENTES ====================
 aplicacao.get('/api/clientes', verificarAcesso, async (requisicao, resposta) => {
   try {
     const busca = `%${requisicao.query.busca || ''}%`;
     const [clientes] = await conexaoBanco.query(
-      "SELECT id_cliente, nome, CAST(AES_DECRYPT(cpf_criptografado, 'chave-estudio-2026') AS CHAR) AS cpf, telefone, email FROM clientes WHERE nome LIKE ? OR telefone LIKE ? OR email LIKE ? ORDER BY nome",
+      "SELECT id_cliente, nome, 'CPF protegido' AS cpf, telefone, email FROM clientes WHERE nome LIKE ? OR telefone LIKE ? OR email LIKE ? ORDER BY nome",
       [busca, busca, busca]
     );
     resposta.json(clientes);
@@ -108,6 +109,7 @@ aplicacao.put('/api/clientes/:id', verificarAcesso, async (requisicao, resposta)
   }
 });
 
+// ==================== ENTIDADE: PROJETOS ====================
 aplicacao.get('/api/projetos', verificarAcesso, async (requisicao, resposta) => {
   try {
     const [projetos] = await conexaoBanco.query(
@@ -145,6 +147,7 @@ aplicacao.put('/api/projetos/:id', verificarAcesso, async (requisicao, resposta)
   }
 });
 
+// ==================== ENTIDADE: SESSÕES ====================
 aplicacao.get('/api/sessoes', verificarAcesso, async (requisicao, resposta) => {
   try {
     const [sessoes] = await conexaoBanco.query(
@@ -182,6 +185,7 @@ aplicacao.put('/api/sessoes/:id', verificarAcesso, async (requisicao, resposta) 
   }
 });
 
+// ==================== ENTIDADE: FUNCIONÁRIOS ====================
 aplicacao.get('/api/funcionarios/eu', verificarAcesso, async (requisicao, resposta) => {
   try {
     const [funcionarios] = await conexaoBanco.query(

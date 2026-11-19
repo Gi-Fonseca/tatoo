@@ -43,8 +43,8 @@ function renderizarSessoes() {
     return `
       <tr>
         <td><strong>${formatarData(sessao.data)}</strong></td>
-        <td><strong>${escaparTexto(cliente.nome || 'Cliente')}</strong><small class="texto-fraco">${escaparTexto(cliente.telefone || '')}</small></td>
-        <td><strong>${escaparTexto(projeto.nome || 'Projeto')}</strong><small class="texto-fraco">${escaparTexto(projeto.estilo || '')}</small></td>
+        <td><strong>${escaparTexto(cliente.nome || 'Cliente')}</strong><small class="texto-fraco">${escaparTexto(cliente.telefone || '')} · ${escaparTexto(cliente.email || '')}</small></td>
+        <td><strong>${escaparTexto(projeto.nome || 'Projeto')}</strong><small class="texto-fraco">${escaparTexto(projeto.estilo || '')} · ${escaparTexto(projeto.status || '')}<br>${escaparTexto(projeto.descricao || '')}</small></td>
         <td>${escaparTexto(tatuador.nome || 'Tatuador')}</td>
         <td>${sessao.duracao} min</td>
         <td><span class="etiqueta">${escaparTexto(sessao.status)}</span></td>

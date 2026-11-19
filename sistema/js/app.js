@@ -1,12 +1,14 @@
-const CHAVE_ARMAZENAMENTO = 'estudio_tatuagem_db_v4';
-const CHAVE_SESSAO = 'estudio_tatuagem_session_v4';
+const CHAVE_ARMAZENAMENTO = 'estudio_tatuagem_db_v5';
+const CHAVE_SESSAO = 'estudio_tatuagem_session_v5';
 const SEGREDO_CRIPTOGRAFIA = 'Estudio-Tatuagem-chave-2026';
 
 const dadosIniciais = {
   funcionarios: [
     { id: 1, nome: 'Tatuador 1', email: 'tatuador@estudio.com', resumoSenha: null, funcao: 'Tatuador' },
     { id: 2, nome: 'Tatuador 2', email: 'tatuador2@estudio.com', resumoSenha: null, funcao: 'Tatuador' },
-    { id: 3, nome: 'Tatuador 3', email: 'tatuador3@estudio.com', resumoSenha: null, funcao: 'Tatuador' }
+    { id: 3, nome: 'Tatuador 3', email: 'tatuador3@estudio.com', resumoSenha: null, funcao: 'Tatuador' },
+    { id: 4, nome: 'Laisla', email: 'laisla@estudio.com', resumoSenha: null, funcao: 'Tatuador' },
+    { id: 5, nome: 'Joao Marcelo', email: 'JoaoM@estudio.com', resumoSenha: null, funcao: 'Tatuador' }
   ],
   clientes: [
     { id: 1, nome: 'Ana Beatriz Souza', cpf: '123.456.789-09', telefone: '(11) 98888-1111', email: 'ana@email.com' },

@@ -1,13 +1,6 @@
 let bancoClientes;
-let cacheCpf = {};
-
 async function renderizarClientes(filtro = '') {
   bancoClientes = await obterBanco();
-  cacheCpf = {};
-
-  for (const cliente of bancoClientes.clientes) {
-    cacheCpf[cliente.id] = await descriptografarCpf(cliente.cpfCriptografado);
-  }
 
   const busca = filtro.toLowerCase();
   const clientes = bancoClientes.clientes.filter(cliente => (
@@ -17,7 +10,7 @@ async function renderizarClientes(filtro = '') {
   document.getElementById('linhasClientes').innerHTML = clientes.map(cliente => `
     <tr>
       <td><strong>${escaparTexto(cliente.nome)}</strong><small class="texto-fraco">${escaparTexto(cliente.email)}</small></td>
-      <td>${escaparTexto(mostrarCpf(cacheCpf[cliente.id]))}</td>
+      <td>CPF protegido</td>
       <td>${escaparTexto(cliente.telefone)}</td>
       <td class="acoes">
         <button class="botao botao-suave" data-editar-cliente="${cliente.id}">Editar</button>
@@ -38,7 +31,8 @@ function editarCliente(id) {
   const cliente = bancoClientes.clientes.find(item => item.id === id);
   document.getElementById('idCliente').value = cliente.id;
   document.getElementById('nomeCliente').value = cliente.nome;
-  document.getElementById('cpfCliente').value = cacheCpf[id];
+  document.getElementById('cpfCliente').value = '';
+  document.getElementById('cpfCliente').placeholder = 'Deixe vazio para manter';
   document.getElementById('telefoneCliente').value = cliente.telefone;
   document.getElementById('emailCliente').value = cliente.email;
   document.getElementById('tituloFormulario').textContent = 'Editar cliente';
@@ -69,6 +63,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   document.getElementById('cancelarEdicao').onclick = () => {
     document.getElementById('formularioCliente').reset();
+    document.getElementById('cpfCliente').placeholder = '000.000.000-00';
   };
 
   document.getElementById('formularioCliente').onsubmit = async evento => {
@@ -79,7 +74,9 @@ document.addEventListener('DOMContentLoaded', async () => {
       nome: document.getElementById('nomeCliente').value.trim(),
       telefone: document.getElementById('telefoneCliente').value.trim(),
       email: document.getElementById('emailCliente').value.trim(),
-      cpfCriptografado: await criptografarCpf(document.getElementById('cpfCliente').value.trim())
+      cpfCriptografado: document.getElementById('cpfCliente').value.trim()
+        ? await criptografarCpf(document.getElementById('cpfCliente').value.trim())
+        : bancoClientes.clientes.find(item => item.id === id)?.cpfCriptografado
     };
 
     if (id) {
@@ -90,6 +87,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     salvarBanco(bancoClientes);
     evento.target.reset();
+    document.getElementById('cpfCliente').placeholder = '000.000.000-00';
     document.getElementById('tituloFormulario').textContent = 'Novo cliente';
     mostrarAviso('Cliente salvo.');
     renderizarClientes();
